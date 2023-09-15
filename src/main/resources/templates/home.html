@@ -1,0 +1,114 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
+    <link th:href = "@{/css/main.css}" rel="stylesheet">
+    <script type="text/javascript" th:src = "@{/js/actions.js}"></script>
+    
+    <!--set dropdown to default using javascript -->
+    <script type="text/javascript">
+	window.addEventListener('load', function () {
+    	document.getElementById('instrumentType').value='default';
+	});
+	
+	
+	</script>
+</head>
+
+<body>
+    <div class="sidenav" style="background: repeating-linear-gradient(45deg,transparent,transparent 10px,#ccc 30px,#ccc 40px),linear-gradient(to bottom, #eee, #999 )";>
+        <h2 class="welcome-message">Welcome, </h2>
+        <h2 class="welcome-message" th:text="${#authentication.principal.username} + '!'"></h2>        
+        <br/><br/><br/>
+        <a th:href = "@{/home}" class="sidebar-link"><b>Home</b></a>
+        <br/><br/>
+        <a th:href = "@{/about}" class="sidebar-link"><b>About</b></a>
+        <br/><br/>
+        
+        
+        
+        
+        
+        
+        
+        
+        <a href = "#" th:href="@{/logout} class="sidebar-link"><b>Logout</b></a>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </div>
+	
+    <div class="container">
+		<h1 id="table-header">Instrument List</h1>
+        <hr/>
+		
+		<h4 th:text="${#request.requestURI} == '/search' 
+					? ${instrumentSelectionModel.instrumentSelection.displayName} 
+					: 'Select Instrument'">
+		</h4>
+				
+		<form class="search" action="/search" th:object = "${instrumentSelectionForm}" method="post">
+
+	        <div id="header">
+	            <div class="grid-item" id="selector">					
+	                <select name="instrumentType" id="instrumentType" th:field="*{instrumentSelection}">
+						<option value="default">Select Instrument</option>
+						<option th:each="instrument: ${T(com.gc.model.selection.InstrumentSelectionCategoryNames).values()}" 
+								th:value="${instrument}"
+								th:text="${instrument.displayName}"
+								th:selected="${param.instrument == instrument}">
+						</option>
+	                </select>
+	            </div>		
+	            <div class="grid-item" id="search">
+	                <button class="btn btn-primary btn-block" type="submit">Search</button>		
+	            </div>
+	            <div class="grid-item" id="request-pull">
+	                <button class="btn btn-primary btn-block" th:onclick="demo()">Request Pull</button>		                
+            	</div>
+        	</div>        
+        	
+        	<p id = "request-notification">*You can only request a pull once per day</p>
+        	
+        </form>
+                
+        <hr/>
+        
+        <div id="instrument-list">
+            <table class="fixed">
+                <tr>
+                    <th>Model</th>
+                    <th id="link">Link</th>
+                    <th>New?</th>
+                </tr>
+                <tr>
+                    <td id="model">Ibanez 8-string</td>
+                    <td id="link"><a href="guitarcenter.com">Link</a></td>
+                    <td>U</td>
+                </tr>
+                <!--
+                <tr th:each="instrument: ${instrumentList}">
+					<td th:text="${instrument.key}"/>
+					<td th:text="${instrument.value}"/>
+					<!--<td th:text="${guitar.new}"/>
+				</tr>
+				-->
+            </table>	
+        </div>
+    </div>
+
+</body>
+
+</html>
