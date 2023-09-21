@@ -1,5 +1,5 @@
-function requestPull(){
-	alert("Request sent. Please a few minutes before searching again.")
+function demo(){
+	alert("Search complete. Please search again and results will update.")
 }
 
 function currentInstrument()

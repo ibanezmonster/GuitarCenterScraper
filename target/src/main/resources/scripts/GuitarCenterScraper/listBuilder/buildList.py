@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-#from run.gc_run import instrumentCategory
 
 class buildList:
     
@@ -14,7 +13,7 @@ class buildList:
     
     def getGCFileList(self, instrumentCategory):
         
-        baseURL = "../run/searchpageshtml"            
+        baseURL = "../run/searchpageshtml/{instrumentCategory}/"            
         fileURLs = []
             
         for i in range(self.numOfPages + 1):
@@ -22,7 +21,7 @@ class buildList:
             if i < 1:
                 continue
             
-            currentFile = f'{baseURL}/{instrumentCategory}/{i}.html'            
+            currentFile = f'{baseURL}{i}.html'            
             fileURLs.append(currentFile)                
         
         return fileURLs
