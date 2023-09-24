@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
-    <link th:href = "@{/css/main.css}" rel="stylesheet">
+    <link th:href = "@{/css/main.css}" rel="stylesheet">    
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 	
 		        <div id="header">
 		            <div class="grid-item" id="selector">					
-		                <select name="instrumentType" id="instrumentType" th:field="*{instrumentSelection}">
+		                <select name="instrumentType" id="instrumentType" th:field="*{instrumentSelection}" th:onchange="'javascript:enableSearchBtn();'">
 							<option value="default" disabled>Select Instrument</option>
 							<option th:each="instrument: ${T(com.gc.model.selection.InstrumentSelectionCategoryNames).values()}" 
 									th:value="${instrument}"
@@ -35,9 +35,11 @@
 							</option>
 		                </select>
 		            </div>		
+		            
 		            <div class="grid-item" id="search">
-		                <button class="btn btn-primary btn-block" type="submit" formaction="/search">Search</button>		
+		                <button id="searchBtn" class="btn btn-primary btn-block" type="submit" formaction="/search" disabled>Search</button>		
 		            </div>
+		            
 		            <div class="grid-item" id="request-pull">
 		                <button class="btn btn-primary btn-block" th:onclick="requestPull()" formaction="/newpull">Request Pull</button>		                
 	            	</div>

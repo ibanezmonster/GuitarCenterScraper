@@ -1,5 +1,8 @@
 package com.gc.file;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import com.gc.model.selection.InstrumentSelection;
 import com.gc.model.selection.InstrumentSelectionCategoryNames;
 
@@ -24,10 +27,22 @@ public final class FileFinder
 	
 	
 	private static String getScraperPath(FileSearchType fileSearchType)
-	{		
-		String fileName = "src/main/resources/scripts/GuitarCenterScraper/run/gc_run.py";
+	{				
+		String fullPath = "";
+		String fileNameRelative = "src/main/resources/scripts/GuitarCenterScraper/";
 		
-		return fileName;
+		Path path = Paths.get(fileNameRelative);
+		Path absolutePath = path;
+		
+		if(!path.isAbsolute())
+		{
+			Path base = Paths.get("");
+			absolutePath = base.resolve(path).toAbsolutePath();
+		}
+		
+		fullPath = absolutePath.normalize().toString();		
+		
+		return fullPath;
 	}
 	
 	private static String getDataFilePath(InstrumentSelection instrumentSelection, FileSearchType fileSearchType)

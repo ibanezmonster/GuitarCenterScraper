@@ -150,6 +150,8 @@ public class TemplateController {
     	
     	
     	//pull.write(instrumentSelection, instrumentList);
+    	
+		model.addAttribute("instrumentSelectionForm", new InstrumentSelection());
     	    	    	  
     	return "home";
     }
@@ -159,7 +161,6 @@ public class TemplateController {
     public String getAbout(Model model) {   
     	
 		model.addAttribute("instrumentSelectionForm", new InstrumentSelection());
-
     	
         return "home";
     }

@@ -24,7 +24,8 @@
 
     <!--search page -->
     <div th:if="${#request.requestURI} == '/home' 
-    		 or ${#request.requestURI} == '/search'">
+    		 or ${#request.requestURI} == '/search'
+    		 or ${#request.requestURI} == '/newpull'">
     	<div th:replace="search :: search">Blank Search Form</div>
 	</div>
 	

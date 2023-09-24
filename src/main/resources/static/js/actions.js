@@ -14,11 +14,21 @@ function currentInstrument()
 }
 
 
+
+
     
 //set default dropdown value
 window.addEventListener('load', function () {
 	document.getElementById('instrumentType').value='default';
 });
+
+
+
+//enable search button once an instrument is selected
+function enableSearchBtn(){
+	document.getElementById("searchBtn").disabled = false;	
+}
+
 
 
 //logout

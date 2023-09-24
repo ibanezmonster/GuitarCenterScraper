@@ -11,15 +11,15 @@ class JSON:
     
     def createJSON(self, guitarLinks, instrumentCategory):
         dt = date.today()        
-        folder = "./list"      
-        filePath = f"{folder}/{instrumentCategory}/list-{dt}.json"
+        folder = './list'      
+        filePath = f'{folder}/{instrumentCategory}/list-{dt}.json'
                 
         if not os.path.exists(folder):
             os.mkdir(folder)
         
-        fields = ["Models", "Links"]
+        fields = ['Models', 'Links']
                 
-        with open(filePath, "w") as f:
+        with open(filePath, 'w') as f:
             json.dump(guitarLinks, f)
         
         
